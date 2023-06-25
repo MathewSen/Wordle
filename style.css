@@ -71,10 +71,6 @@ body {
     background: #3a3a3c;
 }
 @media (max-width: 768px) {
-    .key_row {
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
-    }
     .key {
         width: 5px;
         font-size: 11px;
@@ -84,6 +80,12 @@ body {
     }
     .key_enter {
         width: 30px;
+    }
+    .key_row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
     }
 }
 
