@@ -70,33 +70,37 @@ function startGame(data) {
     const matchWord = (goalWord, playerWord) => {
         let won = false;
         if (goalWord.toLowerCase() === playerWord.toLowerCase()) {
-            won = true;
+          won = true;
         }
-
+      
         let goal = goalWord.toLowerCase().split('');
         let guess = playerWord.toLowerCase().split('');
-
+      
         let toRender = [];
-
+      
         for (let i = 0; i < 5; i++) {
-            let status = '';
-
-            if (!goal.includes(guess[i])) {
-                status = 'grey';
+          let status = '';
+      
+          if (!goal.includes(guess[i])) {
+            status = 'grey';
+          } else {
+            if (guess[i] === goal[i]) {
+              status = 'green';
             } else {
-                if (guess[i] === goal[i]) {
-                    status = 'green';
-                } else {
-                    status = 'yellow';
-                }
-                delete goal[goal.indexOf(guess[i])];
+              status = 'yellow';
+              // Set the background color of the letter on the keyboard to yellow
+              const letterKey = document.querySelector(`[data-letter=${guess[i]}]`);
+              letterKey.classList.add('yellow');
             }
-
-            toRender.push({ letter: guess[i], status: status });
+            delete goal[goal.indexOf(guess[i])];
+          }
+      
+          toRender.push({ letter: guess[i], status: status });
         }
-
+      
         render(toRender, won);
-    };
+      };
+      
 
     const render = (word, won) => {
         const attemptElements = [].slice.call(attempts[currentAttempt].querySelectorAll('.letter'));
@@ -146,7 +150,7 @@ function startGame(data) {
         messageContainer.style.display = 'block';
         messageContainer.style.borderRadius = '5px';
         messageContainer.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.2)';
-        messageContainer.style.width = '';
+        messageContainer.style.maxWidth = '500px';
         messageContainer.style.position = 'fixed';
         messageContainer.style.top = '50px';
         messageContainer.style.left = '50%';
