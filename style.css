@@ -70,3 +70,20 @@ body {
 .grey {
     background: #3a3a3c;
 }
+@media (max-width: 768px) {
+    .key_row {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .key {
+        width: 5px;
+        font-size: 11px;
+    }
+    .key_delete {
+        width: 60px;
+    }
+    .key_enter {
+        width: 30px;
+    }
+}
+
